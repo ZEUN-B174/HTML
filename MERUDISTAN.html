@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>MERUDISTAN</title>
+    <style>
+      body {
+        margin: 0px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      header {
+        background-color: rgb(103, 89, 226);
+        color: white;
+        margin: 0px;
+        text-align: center;
+        padding: 30px;
+        animation: 6s ColorChange;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+
+      h1 {
+        font-size: 4em;
+        padding: 0px;
+        margin: 20px;
+        margin-bottom: -20px;
+      }
+
+      header p {
+        font-size: 1.4em;
+        padding: 0px;
+        margin-top: 10px;
+        margin: 20px;
+      }
+
+      @keyframes ColorChange {
+        0% {background-color: rgb(103, 89, 226);}
+        50% {background-color: rgb(167, 89, 226);}
+        100% {background-color: rgb(103, 89, 226);}
+      }
+
+      nav {
+        background-color: rgb(219, 218, 231);
+        float: top;
+        text-align: center;
+        width: 100%;
+        margin: 0px;
+        padding: 10px;
+      }
+
+      nav li {
+        padding: 15px;
+        margin: 20px;
+        height: 100%;
+        list-style: none;
+        display: inline;
+        width: 25%;
+      }
+
+      nav li a {
+        text-decoration: none;
+        color: black;
+      }
+
+      nav li a:hover {
+        text-decoration: underline;
+        color: rgb(83, 43, 226);
+      }
+
+      section {
+        float: left;
+        width: 70%;
+        margin: 0px;
+      }
+
+      section h2, section p {
+        margin-left: 20px;
+      }
+
+      h2 {
+        color: rgb(103, 89, 226);
+      }
+
+      section article p {
+        color: rgb(82, 79, 90);
+        margin: 20px;
+      }
+
+      img {
+        width: 30%;
+        position:fixed;
+        bottom: 0px;
+        right: 15px;
+      }
+
+      article {
+        border: 1px solid darkslateblue;
+        margin: 20px;
+        border-radius: 10px;
+      }
+
+      footer {
+        clear: both;
+        text-align: center;
+        background-color: rgb(224, 224, 224);
+        padding: 20px;
+      }
+    </style>
+</head>
+<body>
+
+  <header>
+    <h1>MERUDISTAN</h1>
+    <p>Welcome to Meru's Homepage</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#main">메인</a></li>
+      <li><a href="#intro">자기소개</a></li>
+      <li><a href="#company">소속사 소개</a></li>
+      <li><a href="#contact">연락처</a></li>
+    </ul>
+  </nav>
+  <img src="메루_투명배경.png" alt="메루눈나">
+  <section>
+    <article>
+        <h2 id="main">메인</h2>
+        <p>
+            슬라브! 내 페이지에 놀러 온 거야? 어쨌든 환영해!
+            아직은 간단한 기능밖에 없어서 그냥 내 사이버 명함 같은데, 곧 더 재미있는 기능을 많이 추가할 테니까 기대하라구!
+        </p>
+    </article>
+
+    <article>
+        <h2 id="intro">자기소개</h2>
+        <p>
+            난 메루야. 본명은 알루스 에흐메드지. 어린 시절 난 힘들게 살았지만, 우연한 기회로 아이돌이 될 기회를 얻었고,
+            그 결과 쿠르디스탄을 넘어선 전세계에서 가장 유명한 아이돌이 될 수 있었지.
+        </p>
+    </article>
+
+    <article>
+        <h2 id="company">소속사 소개</h2>
+        <p>
+            날 거둬준 소속사가 바로 MILKYWAVE야. 사실 이 회사를 알기 전에 아스타라는 친구를 먼저 알게 되었는데,
+            정말 귀엽고 사랑스러운데다 마음씨까지 고운 녀석이었지. 내가 아이돌이 될 수 있을지 몰라 의기소침해 있을 때 많이 도와줬거든.
+            덕분에 어렸을 때부터 꿈꾸던 아이돌이 될 수 있어서 너무 기뻐.
+        </p>
+    </article>
+
+    <article>
+        <h2 id="contact">연락처</h2>
+        <p>
+            흐흥, 나랑 개인적인 얘기를 하고 싶다고?<br>MERUDISTAN@listikvan.ku로 연락해~
+        </p>
+    </article>
+  </section>
+
+  <footer>
+    ⓒ 2025 MERUDISTAN All rights reserved.
+  </footer>
+
+</body>
+</html>
