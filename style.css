@@ -1,3 +1,4 @@
+/* 전체 설정 */
 body {
     background-color: ghostwhite;
     font-family: Arial, Helvetica, sans-serif;
@@ -6,15 +7,13 @@ body {
     padding: 0px;
 }
 
+/* 헤더 */
 header {
     text-align: center;
     background-color: rgb(174, 193, 227);
     margin: 0px;
     padding: 0px;
-}
-
-h1 {
-    font-size: 2.2em;
+    border-bottom: 1px solid midnightblue;
 }
 
 h3 {
@@ -23,57 +22,26 @@ h3 {
     padding: 20px;
 }
 
-section h3 {
-    font-size: x-large;
-    margin-top: 30px;
-    margin-bottom: 5px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-}
-
-#class {font-size: larger;}
-
-h4 {
-    font-size: larger;
-    margin: 0px;
-    padding: 20px;
-    padding-bottom: 0px;
-}
-
-nav {
-    float: left;
-    width: 20%;
-}
-
-li {
-    margin: 0px;
-    margin-bottom: 5px;
-    padding: 10px;
-}
-
-li:hover {
-    background-color: rgb(211, 215, 240);
-}
-
-li a {
-    color: black;
-    text-decoration: none;
-}
-
-li a:hover {
-    color: mediumblue;
-}
-
+/* 섹션 */
 section {
     float: right;
     width: 80%;
     background-color: white;
+    border-left: 1px solid midnightblue;
 }
 
 section * {
     padding: 0px;
     margin-left: 30px;
     margin-right: 30px;
+}
+
+section h3 {
+    font-size: x-large;
+    margin-top: 30px;
+    margin-bottom: 5px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 section div {
@@ -87,11 +55,6 @@ section div {
 section div * {
     margin: 0px;
     padding: 0px;
-}
-
-div p {
-    margin-top: 5px;
-    margin-bottom: 0px;
 }
 
 section p {
@@ -113,6 +76,55 @@ section a:hover {
     text-decoration: underline;
 }
 
+h1 {
+    font-size: 2.2em;
+}
+
+#class {font-size: larger;}
+
+/* 목차 */
+nav {
+    float: left;
+    width: 18%;
+}
+
+h4 {
+    font-size: larger;
+    margin: 0px;
+    padding: 20px;
+    padding-bottom: 0px;
+}
+
+li {
+    margin: 0px;
+    margin-bottom: 5px;
+    padding: 10px;
+}
+
+li:hover {
+    background-color: rgb(211, 215, 240);
+    border-radius: 5px;
+}
+
+ol {
+    color: cornflowerblue;
+}
+
+li a {
+    color: midnightblue;
+    text-decoration: none;
+}
+
+li a:hover {
+    color: rgb(105, 77, 227);
+}
+
+div p {
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+/* 테이블 */
 table {margin-top: 20px;}
 
 table, td, th {
@@ -124,11 +136,16 @@ td, th {
     padding: 10px;
 }
 
+th {
+    background-color: rgb(208, 218, 235)
+}
+
 #bottom {
     padding-bottom: 30px;
     margin-bottom: 0px;
 }
 
+/* 푸터 */
 footer {
     clear: both;
     text-align: center;
@@ -136,4 +153,5 @@ footer {
     background-color: rgb(216, 223, 238);
     margin: 0px;
     padding: 18px;
+    border-top: 1px solid midnightblue;
 }
