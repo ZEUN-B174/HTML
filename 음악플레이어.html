@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>음악 플레이어</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    audio {
+      display: none;
+    }
+    img#albumArt {
+      width: 200px;
+      height: 200px;
+      border-radius: 15px;
+      object-fit: cover;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    li {
+      padding: 10px;
+      background-color: #f0f0f0;
+      margin: 5px 0;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    li:hover {
+      background-color: #ddd;
+    }
+    .playing {
+      background-color: #cce5ff;
+    }
+    #controls {
+      max-width: 400px;
+      margin: 20px auto;
+    }
+    #seekBar,
+    #volumeBar {
+      width: 100%;
+      margin-top: 10px;
+    }
+    #time {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin-top: 5px;
+      color: #333;
+    }
+    #playPauseBtn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    #playPauseBtn:hover {
+      background-color: #0056b3;
+    }
+    label {
+      font-size: 14px;
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎧 음악 플레이어</h1>
+
+  <img id="albumArt" src="cover1.jpg" alt="앨범 커버 이미지">
+  <h2 id="trackTitle">음악 1</h2>
+
+  <!-- 오디오 -->
+  <audio id="audioPlayer">
+    <source id="audioSource" src="music1.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- 커스텀 컨트롤 -->
+  <div id="controls">
+    <button id="playPauseBtn">▶ 재생</button>
+
+    <!-- 시크바 -->
+    <input type="range" id="seekBar" value="0" min="0" step="1">
+    <div id="time">
+      <span id="currentTime">00:00</span>
+      <span id="duration">00:00</span>
+    </div>
+
+    <!-- 볼륨바 -->
+    <label for="volumeBar">🔊 볼륨</label>
+    <input type="range" id="volumeBar" value="100" min="0" max="100">
+  </div>
+
+  <!-- 플레이리스트 -->
+    <h2>EP.01 - 이스라엘</h2>
+  <ul id="playlist">
+    <li data-src="Canaan.mp3" data-title="가나안" data-cover="cover.png" class="playing">가나안</li>
+    <li data-src="Song of Four Harlots.mp3" data-title="하늘의 아이" data-cover="cover.png">하늘의 아이</li>
+    <li data-src="Dusk of Tel Aviv.mp3" data-title="해질녘의 텔아비브" data-cover="cover.png">해질녘의 텔아비브</li>
+  </ul>
+
+  <script>
+    const audioPlayer = document.getElementById('audioPlayer');
+    const audioSource = document.getElementById('audioSource');
+    const playlistItems = document.querySelectorAll('#playlist li');
+    const albumArt = document.getElementById('albumArt');
+    const trackTitle = document.getElementById('trackTitle');
+    const seekBar = document.getElementById('seekBar');
+    const currentTimeEl = document.getElementById('currentTime');
+    const durationEl = document.getElementById('duration');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const volumeBar = document.getElementById('volumeBar');
+
+    let currentIndex = 0;
+    let isPlaying = false;
+
+    function formatTime(seconds) {
+      const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+      const s = Math.floor(seconds % 60).toString().padStart(2, '0');
+      return `${m}:${s}`;
+    }
+
+    function playSong(index) {
+      const item = playlistItems[index];
+      if (!item) return;
+
+      const song = item.getAttribute('data-src');
+      const title = item.getAttribute('data-title');
+      const cover = item.getAttribute('data-cover');
+
+      audioSource.src = song;
+      trackTitle.textContent = title;
+      albumArt.src = cover;
+
+      audioPlayer.load();
+      audioPlayer.play();
+      isPlaying = true;
+      updatePlayPauseBtn();
+
+      playlistItems.forEach(i => i.classList.remove('playing'));
+      item.classList.add('playing');
+
+      currentIndex = index;
+    }
+
+    function updatePlayPauseBtn() {
+      playPauseBtn.textContent = isPlaying ? '⏸ 일시정지' : '▶ 재생';
+    }
+
+    playPauseBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        audioPlayer.pause();
+        isPlaying = false;
+      } else {
+        audioPlayer.play();
+        isPlaying = true;
+      }
+      updatePlayPauseBtn();
+    });
+
+    playlistItems.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        playSong(index);
+      });
+    });
+
+    audioPlayer.addEventListener('ended', () => {
+      const nextIndex = currentIndex + 1;
+      if (nextIndex < playlistItems.length) {
+        playSong(nextIndex);
+      } else {
+        isPlaying = false;
+        updatePlayPauseBtn();
+      }
+    });
+
+    audioPlayer.addEventListener('timeupdate', () => {
+      seekBar.value = audioPlayer.currentTime;
+      currentTimeEl.textContent = formatTime(audioPlayer.currentTime);
+    });
+
+    audioPlayer.addEventListener('loadedmetadata', () => {
+      seekBar.max = Math.floor(audioPlayer.duration);
+      durationEl.textContent = formatTime(audioPlayer.duration);
+    });
+
+    seekBar.addEventListener('input', () => {
+      audioPlayer.currentTime = seekBar.value;
+    });
+
+    audioPlayer.addEventListener('play', () => {
+      isPlaying = true;
+      updatePlayPauseBtn();
+    });
+
+    audioPlayer.addEventListener('pause', () => {
+      isPlaying = false;
+      updatePlayPauseBtn();
+    });
+
+    // 볼륨 조절
+    volumeBar.addEventListener('input', () => {
+      audioPlayer.volume = volumeBar.value / 100;
+    });
+
+    // 초기화
+    audioPlayer.volume = 1; // 100%
+    playSong(0);
+  </script>
+</body>
+</html>
