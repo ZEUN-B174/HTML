@@ -7,8 +7,17 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <script src="script.js"></script>
+
     <header>
-        <h3>◎ 인터넷 위키</h3>
+        <p>◎ 인터넷 위키</p>
+        <a href="#">홈</a>
+        <a onclick="loginLogout()" id="loginLogoutButton">로그인</a>
+        <a onclick="register()" id="register">회원가입</a>
+        <div class="search">
+            <input type="text" id="searchInput" placeholder="검색어 입력" />
+            <button onclick="search()">검색</button>
+        </div>
     </header>
     
     <nav>
